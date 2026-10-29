@@ -758,6 +758,7 @@ h6 {
   font-weight: 600;
 }
 
+/* MIGAS DE PAN / Breadcrumbs: colores de todas las vistas de detalle */
 .page-title .breadcrumbs ol {
   display: flex;
   flex-wrap: wrap;
@@ -768,6 +769,26 @@ h6 {
   font-weight: 400;
 }
 
+.page-title .breadcrumbs ol li {
+  color: #64748b;
+}
+
+.page-title .breadcrumbs ol li a {
+  color: #106eea;
+  font-weight: 600;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.page-title .breadcrumbs ol li a:hover {
+  color: #0b5ed7;
+  text-shadow: 0 0 8px rgba(16, 110, 234, 0.25);
+}
+
+.page-title .breadcrumbs ol li.current {
+  color: #0f172a;
+  font-weight: 700;
+}
+
 .page-title .breadcrumbs ol li+li {
   padding-left: 10px;
 }
@@ -776,7 +797,7 @@ h6 {
   content: "/";
   display: inline-block;
   padding-right: 10px;
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+  color: #94a3b8;
 }
 
 /*--------------------------------------------------------------
@@ -2070,19 +2091,74 @@ section,
     line-height: 1.5;
 }
 
-/* CSS Precios */
+/* Tarjeta de llamada a precios en las vistas de servicio */
 .highlight-pricing {
-  background-color: rgba(138, 255, 138, 0.18); /* verde suave transparente */
-  padding: 20px;
+  width: 100%;
+  min-height: 112px;
+  margin: 20px 0 0 !important;
+  padding: 22px 58px 22px 22px;
+  border: 1px solid rgba(16, 110, 234, 0.16);
   border-radius: 12px;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f4f8ff 0%, #eaf2ff 100%);
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Hover */
+.highlight-pricing::before {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  right: -70px;
+  top: -70px;
+  border-radius: 50%;
+  background: rgba(16, 110, 234, 0.08);
+}
+
+.highlight-pricing::after {
+  content: "\2192";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #106eea;
+  font-size: 30px;
+  font-weight: 700;
+  transition: transform 0.25s ease;
+}
+
+.highlight-pricing h2 {
+  margin: 0;
+  text-align: left;
+}
+
+.highlight-pricing h2 p {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.highlight-pricing h2 span:first-child {
+  display: block;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.highlight-pricing h2 .description-title {
+  color: #106eea;
+  font-size: 22px;
+  font-weight: 800;
+}
+
 .highlight-pricing:hover {
-  background-color: rgba(138, 255, 138, 0.32); /* un poco más visible */
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(138, 255, 138, 0.25);
+  transform: translateY(-4px);
+  border-color: rgba(16, 110, 234, 0.38);
+  box-shadow: 0 14px 30px rgba(16, 110, 234, 0.16);
+}
+
+.highlight-pricing:hover::after {
+  transform: translate(5px, -50%);
 }
 
 
@@ -2193,9 +2269,10 @@ section,
 
 /*-***********************-*/
 
-/* ================================
-   LISTA DE SERVICIOS – ESTILO FINAL
-================================ */
+/* ==============================================================
+   MENÚ LATERAL DE SERVICIOS - VISTA SERVICE-DETAILS
+   Cambiar aquí el fondo, texto, separación y efecto hover
+   ============================================================== */
 
 .services-list {
   display: flex;
@@ -2227,10 +2304,10 @@ section,
   background-color: rgba(173, 255, 47, 0.6);
 }
 
-/* ================================
-   OVERRIDE FINAL – MÁS AIRE ENTRE SERVICIOS
-   (mantiene tu estilo y colores)
-================================ */
+/* ==============================================================
+   MENÚ LATERAL LEGACY - OVERRIDES ANTIGUOS
+   Mantener separado temporalmente mientras se revisa la lista
+   ============================================================== */
 
 /* Elimina márgenes heredados del template */
 .services-list a {
@@ -2267,7 +2344,7 @@ section,
   background-color: rgba(173, 255, 47, 0.6);
 }
 
-/* Override final por seguridad */
+/* Override específico para los enlaces del menú lateral */
 .service-details .services-list a {
   margin: 0 !important;
 }
@@ -2285,9 +2362,63 @@ section,
   border-left-color: #d97706;
 }
 
-/* ================================
-   PRICING – TARJETAS MISMO TAMAÑO
-================================ */
+#list_serv.services-list {
+  padding: 14px;
+  border: 1px solid rgba(16, 110, 234, 0.12);
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+#list_serv.services-list a {
+  padding: 12px 14px !important;
+  color: #475569;
+  font-weight: 600;
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  background-color: transparent;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+#list_serv.services-list a:hover {
+  color: #106eea;
+  border-left-color: #106eea;
+  background-color: rgba(16, 110, 234, 0.08);
+  transform: translateX(3px);
+}
+
+#list_serv.services-list a.trial-highlight {
+  color: #b45309;
+  border-left-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.16);
+}
+
+#list_serv.services-list a.trial-highlight:hover {
+  color: #92400e;
+  border-left-color: #d97706;
+  background-color: rgba(245, 158, 11, 0.28);
+}
+
+#list_serv.services-list a.trial-highlight,
+.service-details .services-list a.trial-highlight {
+  color: #ffffff !important;
+  border: 0;
+  border-left: 0;
+  background: linear-gradient(135deg, #106eea 0%, #6d4aff 100%) !important;
+  box-shadow: 0 8px 18px rgba(16, 110, 234, 0.22);
+}
+
+#list_serv.services-list a.trial-highlight:hover,
+.service-details .services-list a.trial-highlight:hover {
+  color: #ffffff !important;
+  border-left: 0;
+  background: linear-gradient(135deg, #0b5ed7 0%, #5734d8 100%) !important;
+  box-shadow: 0 12px 24px rgba(16, 110, 234, 0.32);
+}
+
+/* ==============================================================
+   PRECIOS: tarjetas con altura uniforme
+   ============================================================== */
 
 /* La columna debe estirarse */
 .pricing .row > div {
@@ -2463,6 +2594,78 @@ section,
   color: #6fbf00;
 }
 
+/* ==============================================================
+   MENÚ LATERAL PROFESIONAL - REGLA FINAL
+   Esta regla controla todas las vistas de detalle de servicio
+   Selector: .service-details .services-list
+   ============================================================== */
+.service-details .services-list {
+  padding: 14px;
+  border: 1px solid rgba(16, 110, 234, 0.12);
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.service-details .services-list a {
+  margin: 0 0 6px !important;
+  padding: 12px 14px !important;
+  color: #475569;
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  line-height: 1.25 !important;
+  text-decoration: none;
+  background-color: transparent !important;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.service-details .services-list a:last-child {
+  margin-bottom: 0 !important;
+}
+
+.service-details .services-list a.active {
+  color: #106eea;
+  border-left-color: #106eea;
+  background-color: rgba(16, 110, 234, 0.12) !important;
+}
+
+.service-details .services-list a:hover {
+  color: #106eea;
+  border-left-color: #106eea;
+  background-color: rgba(16, 110, 234, 0.08) !important;
+  transform: translateX(3px);
+}
+
+.service-details .services-list a.trial-highlight {
+  color: #b45309;
+  border-left-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.16) !important;
+}
+
+.service-details .services-list a.trial-highlight:hover {
+  color: #92400e;
+  border-left-color: #d97706;
+  background-color: rgba(245, 158, 11, 0.28) !important;
+}
+
+#list_serv.services-list a.trial-highlight,
+.service-details .services-list a.trial-highlight {
+  color: #ffffff !important;
+  border: 0 !important;
+  border-left: 0 !important;
+  background: linear-gradient(135deg, #106eea 0%, #6d4aff 100%) !important;
+  box-shadow: 0 8px 18px rgba(16, 110, 234, 0.22);
+}
+
+#list_serv.services-list a.trial-highlight:hover,
+.service-details .services-list a.trial-highlight:hover {
+  color: #ffffff !important;
+  border: 0 !important;
+  border-left: 0 !important;
+  background: linear-gradient(135deg, #0b5ed7 0%, #5734d8 100%) !important;
+  box-shadow: 0 12px 24px rgba(16, 110, 234, 0.32);
+}
+
 /* Título */
 .services .service-item h3 {
   transition: color 0.3s ease;
@@ -2482,5 +2685,3 @@ section,
 .services .service-item:hover p {
   color: #333;
 }
-
-
