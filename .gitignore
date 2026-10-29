@@ -1,0 +1,12 @@
+# Local environment and editor files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+
+# Local build and dependency artifacts
+node_modules/
+dist/
+coverage/
