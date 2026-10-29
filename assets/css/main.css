@@ -1090,6 +1090,58 @@ section,
   margin-bottom: 0;
 }
 
+.about-services-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 18px 22px;
+  border: 1px solid rgba(16, 110, 234, 0.16);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f4f8ff 0%, #eaf2ff 100%);
+  color: var(--heading-color);
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-services-cta strong,
+.about-services-cta span span {
+  display: block;
+}
+
+.about-services-cta strong {
+  color: #106eea;
+  font-size: 17px;
+}
+
+.about-services-cta span span {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.about-services-cta i {
+  flex: 0 0 auto;
+  color: #106eea;
+  font-size: 26px;
+  transition: transform 0.25s ease;
+}
+
+.about-services-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(16, 110, 234, 0.14);
+}
+
+.about-services-cta:hover i {
+  transform: translateX(4px);
+}
+
+.about-services-cta:focus-visible {
+  outline: 3px solid #106eea;
+  outline-offset: 3px;
+}
+
 /*--------------------------------------------------------------
 # Skills Section
 --------------------------------------------------------------*/
@@ -1547,6 +1599,10 @@ section,
   opacity: 1;
 }
 
+.team .row {
+  justify-content: center;
+}
+
 /*--------------------------------------------------------------
 # Pricing Section
 --------------------------------------------------------------*/
@@ -1872,7 +1928,16 @@ section,
 }
 
 .service-details .services-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1080 / 566;
+  object-fit: cover;
   margin-bottom: 20px;
+}
+
+.service-details .service-highlight {
+  color: #106eea;
+  font-weight: 700;
 }
 
 .service-details h3 {
