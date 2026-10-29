@@ -1578,21 +1578,21 @@ section,
   font-weight: 700;
   margin-bottom: 5px;
   font-size: 18px;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  color: #1f2937;
 }
 
 .team .team-member .member-info span {
   display: block;
-  font-size: 13px;
-  font-weight: 400;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
 }
 
 .team .team-member .member-info p {
   font-style: italic;
   font-size: 14px;
   line-height: 26px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  color: #475569;
 }
 
 .team .team-member:hover .social {
@@ -1622,14 +1622,15 @@ section,
   padding: 20px 15px;
   font-size: 16px;
   font-weight: 600;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  background: color-mix(in srgb, var(--default-color), transparent 95%);
+  color: #1f2937;
+  background: #f1f5f9;
 }
 
 .pricing .pricing-item h4 {
   font-size: 36px;
   font-weight: 600;
   font-family: var(--heading-font);
+  color: #111827;
 }
 
 .pricing .pricing-item h4 sup {
@@ -1639,9 +1640,9 @@ section,
 }
 
 .pricing .pricing-item h4 span {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  color: #475569;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .pricing .pricing-item ul {
@@ -1650,6 +1651,7 @@ section,
   text-align: center;
   line-height: 20px;
   font-size: 14px;
+  color: #334155;
 }
 
 .pricing .pricing-item ul li {
@@ -1663,7 +1665,7 @@ section,
 }
 
 .pricing .pricing-item ul .na {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  color: #64748b;
   text-decoration: line-through;
 }
 
