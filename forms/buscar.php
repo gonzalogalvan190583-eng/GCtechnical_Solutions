@@ -27,10 +27,7 @@ $busqueda = trim($busqueda);
   $servicios = [
     "Diseño Web",
     "Desarrollo Web",
-    "Soporte TI",
-    "Consultoría Digital",
-    "Marketing Digital",
-    "Análisis de Datos",
+    "Automatización de Procesos",
     "Asesorías Contables"
   ];
 

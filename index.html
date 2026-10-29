@@ -4,13 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Inicio - GC Tech Solutions</title>
+  <title>Inicio - GC Technical Solutions</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicones -->
-  <link href="assets/img/Logo/Logo_recortado.png" rel="icon">
-  <link href="assets/img/Logo/Logo_recortado.png" rel="apple-touch-icon">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -18,6 +18,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/img/Fondo_Pagina/fondo2-optimized.jpg">
 
   <!-- Archivos CSS de Terceros -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -84,7 +86,7 @@
 
         <!-- Logo -->
         <a href="index.html" class="logo">
-          <img src="assets/img/Logo/Logo_recortado.png" alt="GC Technical Solution" class="logo-img">
+          <img src="assets/img/Logo/Logo_recortado-optimized.png" alt="GC Technical Solution" class="logo-img" fetchpriority="high" decoding="async" width="200" height="90">
         </a>
 
         <!-- Navegación -->
@@ -108,7 +110,7 @@
               </ul>
             </li>-->
             <li><a href="#contact">Contacto</a></li>
-            <li><a href="starter-page.html" class="active">Web Express</a></li>
+            <li><a href="web-inicial.html">Hosting Básico</a></li>
 
             <!-- Buscador como li al final -->
             <li class="nav-item nav-search">
@@ -140,7 +142,7 @@
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
             <h1>Bienvenido a </h1>
-            <h1><span>GC Tech Solutions</span></h1>
+            <h1><span>GC Technical Solutions</span></h1>
             <p>Somos un equipo especializado en soluciones tecnologicas innovadoras</p>
             <div class="d-flex">
               <a href="#about" class="btn-get-started">Comenzar</a>
@@ -158,40 +160,18 @@
         <div class="row gy-4">
 
           <!-- Diseño Web -->
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-xl-6 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative text-center">
               <div class="icon">
                 <i class="bi bi-laptop icon"></i>
-              </div>
-              <h4><a href="soporte-ti.html" class="stretched-link">Soporte TI Empresarial</a></h4>
-              <p>Soporte técnico preventivo y correctivo, monitoreo y asistencia</p>
-            </div>
-          </div>
-
-          <!-- Desarrollo de Software -->
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative text-center">
-              <div class="icon">
-                <i class="bi bi-code-slash icon"></i>
               </div>
               <h4><a href="desarrollo-web.html" class="stretched-link">Diseño y Desarrollo Web</a></h4>
               <p>Soluciones digitales a medida para optimizar procesos y productividad.</p>
             </div>
           </div>
 
-          <!-- Informes Power BI -->
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative text-center">
-              <div class="icon">
-                <i class="bi bi-bar-chart-line icon"></i>
-              </div>
-              <h4><a href="analisis-datos.html" class="stretched-link">Informes Power BI</a></h4>
-              <p>Visualización de datos clara y precisa para apoyar la toma de decisiones.</p>
-            </div>
-          </div>
-
           <!-- Asesorías Contables -->
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+          <div class="col-xl-6 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item position-relative text-center">
               <div class="icon">
                 <i class="bi bi-calculator icon"></i>
@@ -221,7 +201,7 @@
         <div class="row gy-3">
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <img src="assets/img/Fondo_Pagina/fondo3.jpg" alt="Sobre GC Technical Solution" class="img-fluid">
+            <img src="assets/img/Fondo_Pagina/fondo3.jpg" alt="Sobre GC Technical Solution" class="img-fluid" loading="lazy" decoding="async">
           </div>
 
           <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
@@ -452,20 +432,20 @@
           <div class="swiper-wrapper align-items-center">
 
             <!-- ORIGINALES -->
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/c.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/java.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/js.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/laravel.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/php.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/sql.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/c.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/java.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/js.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/laravel.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/php.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/sql.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
 
             <!-- DUPLICADOS -->
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/c.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/java.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/js.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/laravel.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/php.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/mi_Iconos/sql.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/c.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/java.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/js.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/laravel.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/php.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
+            <div class="swiper-slide"><img src="assets/img/mi_Iconos/sql.png" class="img-fluid" alt="" loading="lazy" decoding="async"></div>
 
           </div>
 
@@ -496,23 +476,8 @@
 
         <div class="row gy-4">
 
-          <!-- Soporte TI -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-headset"></i>
-              </div>
-              <a href="soporte-ti.html" class="stretched-link">
-                <h3>Soporte TI Empresarial</h3>
-              </a>
-              <p>
-                Soporte técnico preventivo y correctivo, monitoreo y asistencia para asegurar la continuidad operativa.
-              </p>
-            </div>
-          </div><!-- Fin Elemento Servicio -->
-
           <!-- Desarrollo Web -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-laptop"></i>
@@ -526,38 +491,8 @@
             </div>
           </div><!-- Fin Elemento Servicio -->
 
-          <!-- Análisis de Datos -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-bar-chart-line"></i>
-              </div>
-              <a href="analisis-datos.html" class="stretched-link">
-                <h3>Análisis de Datos</h3>
-              </a>
-              <p>
-                Creación de reportes y dashboards en Power BI para una mejor toma de decisiones.
-              </p>
-            </div>
-          </div><!-- Fin Elemento Servicio -->
-
-          <!-- Consultoría Digital -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-lightbulb"></i>
-              </div>
-              <a href="consultoría-digital.html" class="stretched-link">
-                <h3>Consultoría Digital</h3>
-              </a>
-              <p>
-                Asesoría tecnológica y estratégica para implementar soluciones digitales eficientes.
-              </p>
-            </div>
-          </div><!-- Fin Elemento Servicio -->
-
           <!-- Automatización -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-gear-wide-connected"></i>
@@ -566,13 +501,13 @@
                 <h3>Automatización de Procesos</h3>
               </a>
               <p>
-                Optimización de tareas y procesos mediante soluciones automatizadas.
+                Soluciones para reducir tareas manuales, cotizadas proyecto a proyecto según el alcance acordado.
               </p>
             </div>
           </div><!-- Fin Elemento Servicio -->
 
-          <!-- Seguridad -->
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <!-- Asesorías Contables -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-cash-stack"></i>
@@ -614,7 +549,7 @@
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="" loading="lazy" decoding="async">
               <div class="portfolio-info">
                 <h4>Sitio web 1</h4>
                 <p>Diseño y desarrollo web</p>
@@ -626,7 +561,7 @@
               </div>
             </div><!-- Fin Elemento Portafolio -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="" loading="lazy" decoding="async">
               <div class="portfolio-info">
                 <h4>Sitio web 2</h4>
                 <p>Diseño y desarrollo web</p>
@@ -638,7 +573,7 @@
               </div>
             </div><!-- Fin Elemento Portafolio -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="" loading="lazy" decoding="async">
               <div class="portfolio-info">
                 <h4>Sitio web 3</h4>
                 <p>Diseño y desarrollo web</p>
@@ -674,7 +609,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="team-member">
               <div class="member-img">
-                <img src="***" class="img-fluid" alt="">
+                <img src="***" class="img-fluid" alt="" loading="lazy" decoding="async">
                 <div class="social">
                   <a href="" title="Siguenos en X"><i class="bi bi-twitter-x"></i></a>
                   <a href="" title="Siguenos en Facebook"><i class="bi bi-facebook"></i></a>
@@ -692,7 +627,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="team-member">
               <div class="member-img">
-                <img src="***" class="img-fluid" alt="">
+                <img src="***" class="img-fluid" alt="" loading="lazy" decoding="async">
                 <div class="social">
                   <a href="" title="Siguenos en X"><i class="bi bi-twitter-x"></i></a>
                   <a href="" title="Siguenos en Facebook"><i class="bi bi-facebook"></i></a>
@@ -724,20 +659,22 @@
       <div class="container">
         <div class="row gy-3">
 
-          <!-- Hosting & Correos -->
+          <!-- Hosting Básico -->
           <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="pricing-item">
               <h3>Hosting Básico</h3>
-              <h4><sup></sup>60 dias<span> / de prueba sin costo</span></h4>
+              <h4><sup>$</sup>4.990<span> / mes</span></h4>
+              <p>30 días de prueba sin costo</p>
+              <p>Alojamiento web para mantener tu sitio disponible en internet.</p>
               <ul>
-                <li>Hosting SSD 5 GB</li>
-                <li>Hasta 1 correos corporativos</li>
-                <li>Certificado HTTPS</li>
-                <li>Soporte básico</li>
-                <li class="na">Mantención web</li>
+                <li>Alojamiento web</li>
+                <li>Certificado SSL, según proveedor</li>
+                <li>Configuración inicial</li>
+                <li>Asistencia básica de puesta en marcha</li>
               </ul>
+              <p>Dominio, correo y desarrollo web no incluidos, salvo que se indique.</p>
               <div class="btn-wrap">
-                <a href="index.html#contact" class="btn-buy">Contratar</a>
+                <a href="web-inicial.html" class="btn-buy">Ver detalle</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -747,53 +684,57 @@
             <div class="pricing-item featured">
               <h3>Mantención Web</h3>
               <h4><sup>$</sup>29.990<span> / mes</span></h4>
+              <p>Mantén tu página web en buenas condiciones.</p>
               <ul>
-                <li>Actualizaciones técnicas</li>
-                <li>Respaldos mensuales</li>
-                <li>Soporte por correo y WhatsApp</li>
-                <li>Revisión de seguridad</li>
-                <li class="na">Cambios estructurales</li>
+                <li>Revisión de funcionamiento</li>
+                <li>Actualizaciones compatibles</li>
+                <li>Respaldos programados</li>
+                <li>Correcciones menores con límite de trabajo definido</li>
               </ul>
+              <p>No incluye rediseños ni nuevas funcionalidades.</p>
               <div class="btn-wrap">
                 <a href="index.html#contact" class="btn-buy">Contratar</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
 
-          <!-- Web Estática -->
+          <!-- Web Inicial -->
           <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="pricing-item">
-              <h3>Web Estática</h3>
-              <h4><sup>$</sup>189.990<span> único</span></h4>
+              <h3>Web Inicial</h3>
+              <h4><sup>$</sup>189.990<span> / proyecto</span></h4>
+              <p>Una presencia digital profesional para comenzar.</p>
               <ul>
-                <li>Hasta 5 secciones</li>
-                <li>Diseño responsive</li>
+                <li>Hasta 5 secciones informativas</li>
+                <li>Diseño adaptable a celulares y computadores</li>
+                <li>Botón de WhatsApp</li>
                 <li>Formulario de contacto</li>
-                <li>Certificado HTTPS</li>
-                <li>SEO técnico inicial</li>
-                <li class="na">Panel autoadministrable</li>
+                <li>Publicación inicial</li>
               </ul>
+              <p>Precio sujeto al alcance, contenidos y funcionalidades acordadas.</p>
               <div class="btn-wrap">
-                <a href="starter-page.html" class="btn-buy">Ver detalle</a>
+                <a href="index.html#contact" class="btn-buy">Solicitar proyecto</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
 
-          <!-- Web Dinámica -->
+          <!-- Web Profesional -->
           <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="400">
             <div class="pricing-item">
-              <span class="advanced">Más vendido</span>
-              <h3>Web Dinámica</h3>
-              <h4><sup>$</sup>389.990<span> desde</span></h4>
+              <h3>Web Profesional</h3>
+              <h4><span>Desde </span><sup>$</sup>389.990</h4>
+              <p>Pago por proyecto</p>
+              <p>Una web personalizada para empresas que necesitan más funcionalidades.</p>
               <ul>
-                <li>Panel autoadministrable</li>
                 <li>Diseño personalizado</li>
-                <li>SEO técnico inicial</li>
-                <li>Integración WhatsApp</li>
-                <li>Certificado HTTPS</li>
+                <li>Secciones y contenido ampliados</li>
+                <li>Integraciones según requerimientos</li>
+                <li>Formularios y herramientas de contacto</li>
+                <li>Preparación para futuras mejoras</li>
               </ul>
+              <p>Las funciones especiales se cotizan por separado.</p>
               <div class="btn-wrap">
-                <a href="service-details.html" class="btn-buy">Ver detalle</a>
+                <a href="index.html#contact" class="btn-buy">Solicitar cotización</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -1080,20 +1021,19 @@
   </div>
 
   <!-- Archivos JS de Terceros -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script defer src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script defer src="assets/vendor/php-email-form/validate.js"></script>
+  <script defer src="assets/vendor/aos/aos.js"></script>
+  <script defer src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script defer src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script defer src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script defer src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script defer src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script defer src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/emailjs@3/dist/email.min.js"></script>
 
   <!-- Archivo JS Principal -->
-  <script src="assets/js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs@3/dist/email.min.js"></script>
-
+  <script defer src="assets/js/main.js"></script>
 
 
 </body>

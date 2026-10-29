@@ -245,131 +245,118 @@ const searchInput = document.getElementById('navSearchInput');
 const searchForm = document.getElementById('navSearchForm');
 const searchResults = document.getElementById('searchResults');
 
-navSearchBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  navSearchDropdown.classList.toggle('show');
-  searchInput.focus();
-});
+if (navSearchBtn && navSearchDropdown && searchInput && searchForm && searchResults) {
+  navSearchBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navSearchDropdown.classList.toggle('show');
+    searchInput.focus();
+  });
 
-// Cerrar al hacer click fuera
-document.addEventListener('click', () => {
-  navSearchDropdown.classList.remove('show');
-  searchResults.classList.add('d-none');
-});
-
-// Evitar que el click dentro cierre el buscador
-navSearchDropdown.addEventListener('click', (e) => {
-  e.stopPropagation();
-});
-
-// ==========================
-// Datos de búsqueda
-// ==========================
-const services = [
-  { name: "Solución Inicial para tu Negocio", url: "starter-page.html" },
-  { name: "Soporte TI", url: "soporte-ti.html" },
-  { name: "Diseño y Desarrollo Web", url: "desarrollo-web.html" },
-  { name: "Análisis de Datos", url: "analisis-datos.html" },
-  { name: "Consultoría Digital", url: "consultoría-digital.html" },
-  { name: "Automatización de Procesos", url: "auto-procesos.html" },
-  { name: "Asesorías Contables", url: "asesorías-contable.html" }
-];
-
-// ==========================
-// Búsqueda en tiempo real
-// ==========================
-searchInput.addEventListener('input', () => {
-  const query = searchInput.value.toLowerCase().trim();
-  searchResults.innerHTML = '';
-
-  if (!query) {
+  document.addEventListener('click', () => {
+    navSearchDropdown.classList.remove('show');
     searchResults.classList.add('d-none');
-    return;
-  }
+  });
 
-  const filtered = services.filter(s =>
-    s.name.toLowerCase().includes(query)
-  );
+  navSearchDropdown.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
 
-  if (filtered.length === 0) {
-    searchResults.innerHTML = '<div class="result-item">No se encontraron resultados</div>';
-  } else {
-    filtered.forEach(s => {
-      const item = document.createElement('a');
-      item.href = s.url;
-      item.textContent = s.name;
-      item.classList.add('result-item');
-      searchResults.appendChild(item);
-    });
-  }
+  const services = [
+    { name: "Hosting Básico", url: "web-inicial.html" },
+    { name: "Diseño y Desarrollo Web", url: "desarrollo-web.html" },
+    { name: "Automatización de Procesos", url: "auto-procesos.html" },
+    { name: "Asesorías Contables", url: "asesorías-contable.html" }
+  ];
 
-  searchResults.classList.remove('d-none');
-});
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    searchResults.innerHTML = '';
 
-// ==========================
-// Evitar submit real
-// ==========================
-searchForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const first = searchResults.querySelector('a');
-  if (first) first.click();
-});
+    if (!query) {
+      searchResults.classList.add('d-none');
+      return;
+    }
+
+    const filtered = services.filter(s =>
+      s.name.toLowerCase().includes(query)
+    );
+
+    if (filtered.length === 0) {
+      searchResults.innerHTML = '<div class="result-item">No se encontraron resultados</div>';
+    } else {
+      filtered.forEach(s => {
+        const item = document.createElement('a');
+        item.href = s.url;
+        item.textContent = s.name;
+        item.classList.add('result-item');
+        searchResults.appendChild(item);
+      });
+    }
+
+    searchResults.classList.remove('d-none');
+  });
+
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const first = searchResults.querySelector('a');
+    if (first) first.click();
+  });
+}
 
 
 
 /*js para formulario de contacto*/
 
 
-(function(){
-  emailjs.init("PUBLIC_KEY_AQUI"); // 👈 tu Public Key
-})();
-
 const form = document.querySelector('.php-email-form');
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
+if (form && typeof emailjs !== 'undefined') {
+  emailjs.init("PUBLIC_KEY_AQUI");
 
-  document.querySelector('.loading').style.display = 'block';
-  document.querySelector('.error-message').style.display = 'none';
-  document.querySelector('.sent-message').style.display = 'none';
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-  emailjs.sendForm(
-    'SERVICE_ID_AQUI',     // 👈 Service ID
-    'TEMPLATE_ID_AQUI',    // 👈 Template ID
-    this
-  )
-  .then(() => {
-    document.querySelector('.loading').style.display = 'none';
-    document.querySelector('.sent-message').style.display = 'block';
-    form.reset();
-  })
-  .catch(() => {
-    document.querySelector('.loading').style.display = 'none';
-    document.querySelector('.error-message').innerHTML =
-      'Error al enviar el mensaje. Inténtalo nuevamente.';
-    document.querySelector('.error-message').style.display = 'block';
+    document.querySelector('.loading').style.display = 'block';
+    document.querySelector('.error-message').style.display = 'none';
+    document.querySelector('.sent-message').style.display = 'none';
+
+    emailjs.sendForm(
+      'SERVICE_ID_AQUI',     // 👈 Service ID
+      'TEMPLATE_ID_AQUI',    // 👈 Template ID
+      this
+    )
+    .then(() => {
+      document.querySelector('.loading').style.display = 'none';
+      document.querySelector('.sent-message').style.display = 'block';
+      form.reset();
+    })
+    .catch(() => {
+      document.querySelector('.loading').style.display = 'none';
+      document.querySelector('.error-message').innerHTML =
+        'Error al enviar el mensaje. Inténtalo nuevamente.';
+      document.querySelector('.error-message').style.display = 'block';
+    });
   });
-});
+}
 
-(function () {
-  emailjs.init("TU_PUBLIC_KEY"); // se obtiene en EmailJS
-})();
+const contactForm = document.getElementById('contactForm');
 
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-  e.preventDefault();
+if (contactForm && typeof emailjs !== 'undefined') {
+  emailjs.init("TU_PUBLIC_KEY");
 
-  emailjs.sendForm(
-    'TU_SERVICE_ID',
-    'TU_TEMPLATE_ID',
-    this
-  ).then(() => {
-    alert('Mensaje enviado correctamente');
-    this.reset();
-  }).catch(() => {
-    alert('Error al enviar el mensaje');
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      'TU_SERVICE_ID',
+      'TU_TEMPLATE_ID',
+      this
+    ).then(() => {
+      alert('Mensaje enviado correctamente');
+      this.reset();
+    }).catch(() => {
+      alert('Error al enviar el mensaje');
+    });
   });
-});/**fin de js formulario */
-
-
-
-
+}
+/**fin de js formulario */
