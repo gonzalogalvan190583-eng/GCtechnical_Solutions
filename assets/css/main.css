@@ -2616,26 +2616,44 @@ section,
    PRECIOS: tarjetas con altura uniforme
    ============================================================== */
 
-/* La columna debe estirarse */
-.pricing .row > div {
-  display: flex;
+/* Mantiene la misma altura en todas las filas, incluso cuando las tarjetas se distribuyen en varias filas. */
+.pricing .row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
 }
 
-/* La tarjeta ocupa toda la altura */
-.pricing-item {
+.pricing .row > div {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+}
+
+.pricing .pricing-item {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
 }
 
-/* El contenido crece parejo */
-.pricing-item ul {
+.pricing .pricing-item ul {
   flex-grow: 1;
 }
 
-/* Botón siempre abajo */
-.pricing-item .btn-wrap {
+.pricing .pricing-item .btn-wrap {
   margin-top: auto;
+}
+
+@media (max-width: 1199.98px) {
+  .pricing .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991.98px) {
+  .pricing .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ================================
