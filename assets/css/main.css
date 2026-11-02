@@ -1888,6 +1888,19 @@ section,
   }
 }
 
+.contact .contact-map {
+  width: 100%;
+  height: 450px;
+  max-width: 100%;
+  display: block;
+}
+
+@media (max-width: 575px) {
+  .contact .contact-map {
+    height: 300px;
+  }
+}
+
 .contact .info-item {
   margin-bottom: 40px;
 }
