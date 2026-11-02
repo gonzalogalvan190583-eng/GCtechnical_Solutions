@@ -1684,7 +1684,7 @@ section,
 .pricing .pricing-item {
   background-color: var(--surface-color);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 14px;
   text-align: center;
   border-radius: 5px;
   position: relative;
@@ -1693,12 +1693,12 @@ section,
 
 .pricing .pricing-item h3 {
   font-weight: 400;
-  margin: -20px -20px 20px -20px;
-  padding: 20px 15px;
+  margin: -14px -14px 12px -14px;
+  padding: 12px 10px;
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
-  background: #f1f5f9;
+  color: var(--contrast-color);
+  background: var(--accent-color);
 }
 
 .pricing .pricing-item h4 {
@@ -1706,6 +1706,7 @@ section,
   font-weight: 600;
   font-family: var(--heading-font);
   color: #111827;
+  margin-bottom: 8px;
 }
 
 .pricing .pricing-item h4 sup {
@@ -1721,16 +1722,16 @@ section,
 }
 
 .pricing .pricing-item ul {
-  padding: 15px 0;
+  padding: 8px 0;
   list-style: none;
   text-align: center;
-  line-height: 20px;
+  line-height: 18px;
   font-size: 14px;
   color: #334155;
 }
 
 .pricing .pricing-item ul li {
-  padding-bottom: 16px;
+  padding-bottom: 7px;
 }
 
 .pricing .pricing-item ul i {
@@ -1746,8 +1747,8 @@ section,
 
 .pricing .btn-wrap {
   background: color-mix(in srgb, var(--default-color), transparent 95%);
-  margin: 0 -20px -20px -20px;
-  padding: 20px 15px;
+  margin: 0 -14px -14px -14px;
+  padding: 12px 10px;
   text-align: center;
 }
 
@@ -2632,8 +2633,9 @@ section,
 /* Mantiene la misma altura en todas las filas, incluso cuando las tarjetas se distribuyen en varias filas. */
 .pricing .row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: auto;
+  align-items: start;
 }
 
 .pricing .row > div {
@@ -2645,16 +2647,43 @@ section,
 .pricing .pricing-item {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
   width: 100%;
 }
 
-.pricing .pricing-item ul {
-  flex-grow: 1;
+.pricing .pricing-item > p {
+  margin-bottom: 6px;
 }
 
 .pricing .pricing-item .btn-wrap {
   margin-top: auto;
+}
+
+.pricing .pricing-item.featured {
+  border: 3px solid var(--accent-color);
+  box-shadow:
+    0 14px 32px rgba(16, 110, 234, 0.28),
+    0 0 0 4px rgba(16, 110, 234, 0.08);
+  transform: translateY(-10px);
+  overflow: visible;
+}
+
+.pricing .pricing-item.featured::before {
+  content: "DESTACADO";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  box-shadow: 0 8px 18px rgba(16, 110, 234, 0.32);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  line-height: 1;
 }
 
 @media (max-width: 1199.98px) {
@@ -2680,6 +2709,13 @@ section,
 .pricing-item:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 30px rgba(173, 255, 47, 0.6);
+}
+
+.pricing .pricing-item.featured:hover {
+  transform: translateY(-14px);
+  box-shadow:
+    0 18px 38px rgba(16, 110, 234, 0.38),
+    0 0 0 5px rgba(16, 110, 234, 0.12);
 }
 
 .plan-neon {

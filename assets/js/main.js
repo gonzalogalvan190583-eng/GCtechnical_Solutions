@@ -262,9 +262,9 @@ if (navSearchBtn && navSearchDropdown && searchInput && searchForm && searchResu
   });
 
   const services = [
-    { name: "Hosting Básico", url: "web-inicial.html" },
+    { name: "Landing Page Express", url: "web-inicial.html" },
     { name: "Diseño y Desarrollo Web", url: "desarrollo-web.html" },
-    { name: "Automatización de Procesos", url: "auto-procesos.html" },
+    { name: "Configuración y soporte tecnológico", url: "configuracion-soporte-tecnico.html" },
     { name: "Asesorías Contables", url: "asesorías-contable.html" }
   ];
 
