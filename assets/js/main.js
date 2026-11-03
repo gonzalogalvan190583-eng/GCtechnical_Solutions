@@ -305,58 +305,51 @@ if (navSearchBtn && navSearchDropdown && searchInput && searchForm && searchResu
 
 
 
-/*js para formulario de contacto*/
-
-
-const form = document.querySelector('.php-email-form');
-
-if (form && typeof emailjs !== 'undefined') {
-  emailjs.init("PUBLIC_KEY_AQUI");
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    document.querySelector('.loading').style.display = 'block';
-    document.querySelector('.error-message').style.display = 'none';
-    document.querySelector('.sent-message').style.display = 'none';
-
-    emailjs.sendForm(
-      'SERVICE_ID_AQUI',     // 👈 Service ID
-      'TEMPLATE_ID_AQUI',    // 👈 Template ID
-      this
-    )
-    .then(() => {
-      document.querySelector('.loading').style.display = 'none';
-      document.querySelector('.sent-message').style.display = 'block';
-      form.reset();
-    })
-    .catch(() => {
-      document.querySelector('.loading').style.display = 'none';
-      document.querySelector('.error-message').innerHTML =
-        'Error al enviar el mensaje. Inténtalo nuevamente.';
-      document.querySelector('.error-message').style.display = 'block';
-    });
-  });
-}
-
 const contactForm = document.getElementById('contactForm');
+const emailjsConfig = {
+  publicKey: 'TU_PUBLIC_KEY',
+  serviceId: 'TU_SERVICE_ID',
+  templateId: 'TU_TEMPLATE_ID'
+};
 
-if (contactForm && typeof emailjs !== 'undefined') {
-  emailjs.init("TU_PUBLIC_KEY");
+if (contactForm) {
+  const loadingMessage = contactForm.querySelector('.loading');
+  const errorMessage = contactForm.querySelector('.error-message');
+  const sentMessage = contactForm.querySelector('.sent-message');
 
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault();
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    errorMessage.classList.add('d-none');
+    sentMessage.classList.add('d-none');
 
-    emailjs.sendForm(
-      'TU_SERVICE_ID',
-      'TU_TEMPLATE_ID',
-      this
-    ).then(() => {
-      alert('Mensaje enviado correctamente');
-      this.reset();
-    }).catch(() => {
-      alert('Error al enviar el mensaje');
-    });
+    if (typeof emailjs === 'undefined') {
+      errorMessage.textContent = 'No se pudo cargar el servicio de envío. Inténtalo más tarde.';
+      errorMessage.classList.remove('d-none');
+      return;
+    }
+
+    if (Object.values(emailjsConfig).some((value) => value.startsWith('TU_'))) {
+      errorMessage.textContent = 'El formulario aún no está configurado. Inténtalo más tarde.';
+      errorMessage.classList.remove('d-none');
+      return;
+    }
+
+    loadingMessage.classList.remove('d-none');
+
+    try {
+      await emailjs.sendForm(emailjsConfig.serviceId, emailjsConfig.templateId, contactForm);
+      sentMessage.classList.remove('d-none');
+      contactForm.reset();
+    } catch (error) {
+      console.error('Error al enviar el formulario de contacto:', error);
+      errorMessage.textContent = 'Error al enviar el mensaje. Inténtalo nuevamente.';
+      errorMessage.classList.remove('d-none');
+    } finally {
+      loadingMessage.classList.add('d-none');
+    }
   });
+
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init({ publicKey: emailjsConfig.publicKey });
+  }
 }
-/**fin de js formulario */
