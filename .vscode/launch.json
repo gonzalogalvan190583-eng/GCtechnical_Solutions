@@ -5,7 +5,8 @@
             "type": "msedge",
             "request": "launch",
             "name": "Abrir Mi Web en Microsoft Edge",
-            "file": "${workspaceFolder}/index.html",
+            "url": "http://127.0.0.1:8000/",
+            "preLaunchTask": "Iniciar servidor local GC",
             "webRoot": "${workspaceFolder}"
         }
     ]

@@ -1,6 +1,58 @@
 <?php
 declare(strict_types=1);
 
+function load_local_environment(): void
+{
+    if (!in_array(PHP_SAPI, ['cli', 'cli-server'], true)) {
+        return;
+    }
+
+    $envFile = dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env';
+    if (!is_file($envFile)) {
+        return;
+    }
+
+    $lines = @file($envFile, FILE_IGNORE_NEW_LINES);
+    if ($lines === false) {
+        throw new RuntimeException('No se pudo leer el archivo .env local.');
+    }
+
+    foreach ($lines as $lineNumber => $line) {
+        $line = trim($line);
+        if ($line === '' || str_starts_with($line, '#')) {
+            continue;
+        }
+
+        if (!preg_match('/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/', $line, $matches)) {
+            throw new RuntimeException('El archivo .env tiene un formato no válido en la línea ' . ($lineNumber + 1) . '.');
+        }
+
+        $name = $matches[1];
+        $value = trim($matches[2]);
+        if (strlen($value) >= 2 && ($value[0] === '"' || $value[0] === "'") && $value[-1] === $value[0]) {
+            $value = substr($value, 1, -1);
+        }
+
+        if (getenv($name) !== false) {
+            continue;
+        }
+
+        putenv($name . '=' . $value);
+        $_ENV[$name] = $value;
+        $_SERVER[$name] = $value;
+    }
+}
+
+set_exception_handler(static function (Throwable $exception): void {
+    error_log('Error inesperado en el panel de solicitudes: ' . $exception->getMessage());
+    if (!headers_sent()) {
+        http_response_code(500);
+        header('Content-Type: text/plain; charset=utf-8');
+    }
+    echo 'Ocurrió un error interno. Inténtalo más tarde.';
+});
+
+load_local_environment();
 date_default_timezone_set(getenv('GC_TIMEZONE') ?: 'America/Santiago');
 ini_set('display_errors', '0');
 ini_set('log_errors', '1');
@@ -20,15 +72,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     ]);
     session_start();
 }
-
-set_exception_handler(static function (Throwable $exception): void {
-    error_log('Error inesperado en el panel de solicitudes: ' . $exception->getMessage());
-    if (!headers_sent()) {
-        http_response_code(500);
-        header('Content-Type: text/plain; charset=utf-8');
-    }
-    echo 'Ocurrió un error interno. Inténtalo más tarde.';
-});
 
 function db(): PDO
 {
