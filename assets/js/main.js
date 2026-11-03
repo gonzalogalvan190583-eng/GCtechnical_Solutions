@@ -15,6 +15,7 @@
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
+    if (!selectHeader) return;
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
     window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
   }
@@ -32,7 +33,9 @@
     mobileNavToggleBtn.classList.toggle('bi-list');
     mobileNavToggleBtn.classList.toggle('bi-x');
   }
-  mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+  if (mobileNavToggleBtn) {
+    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+  }
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -78,13 +81,15 @@
       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
     }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
-  });
+  }
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
@@ -105,37 +110,44 @@
   /**
    * Initiate glightbox
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
+  if (document.querySelector('.glightbox') && typeof GLightbox !== 'undefined') {
+    GLightbox({
+      selector: '.glightbox'
+    });
+  }
 
   /**
    * Animate the skills items on reveal
    */
   let skillsAnimation = document.querySelectorAll('.skills-animation');
-  skillsAnimation.forEach((item) => {
-    new Waypoint({
-      element: item,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = item.querySelectorAll('.progress .progress-bar');
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
-        });
-      }
+  if (skillsAnimation.length && typeof Waypoint !== 'undefined') {
+    skillsAnimation.forEach((item) => {
+      new Waypoint({
+        element: item,
+        offset: '80%',
+        handler: function(direction) {
+          let progress = item.querySelectorAll('.progress .progress-bar');
+          progress.forEach(el => {
+            el.style.width = el.getAttribute('aria-valuenow') + '%';
+          });
+        }
+      });
     });
-  });
+  }
 
   /**
    * Initiate Pure Counter
    */
-  new PureCounter();
+  if (document.querySelector('.purecounter') && typeof PureCounter !== 'undefined') {
+    new PureCounter();
+  }
 
   /**
    * Init swiper sliders
    */
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+      if (typeof Swiper === 'undefined') return;
       let config = JSON.parse(
         swiperElement.querySelector(".swiper-config").innerHTML.trim()
       );
@@ -154,6 +166,7 @@
    * Init isotope layout and filters
    */
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+    if (typeof imagesLoaded === 'undefined' || typeof Isotope === 'undefined') return;
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
@@ -306,50 +319,48 @@ if (navSearchBtn && navSearchDropdown && searchInput && searchForm && searchResu
 
 
 const contactForm = document.getElementById('contactForm');
-const emailjsConfig = {
-  publicKey: 'TU_PUBLIC_KEY',
-  serviceId: 'TU_SERVICE_ID',
-  templateId: 'TU_TEMPLATE_ID'
-};
 
 if (contactForm) {
   const loadingMessage = contactForm.querySelector('.loading');
   const errorMessage = contactForm.querySelector('.error-message');
   const sentMessage = contactForm.querySelector('.sent-message');
+  const subjectField = contactForm.querySelector('[name="subject"]');
+  const requestedService = new URLSearchParams(window.location.search).get('servicio');
+
+  if (subjectField && requestedService && !subjectField.value) {
+    subjectField.value = requestedService.slice(0, 200);
+  }
 
   contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     errorMessage.classList.add('d-none');
     sentMessage.classList.add('d-none');
-
-    if (typeof emailjs === 'undefined') {
-      errorMessage.textContent = 'No se pudo cargar el servicio de envío. Inténtalo más tarde.';
-      errorMessage.classList.remove('d-none');
-      return;
-    }
-
-    if (Object.values(emailjsConfig).some((value) => value.startsWith('TU_'))) {
-      errorMessage.textContent = 'El formulario aún no está configurado. Inténtalo más tarde.';
-      errorMessage.classList.remove('d-none');
-      return;
-    }
-
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
     loadingMessage.classList.remove('d-none');
 
     try {
-      await emailjs.sendForm(emailjsConfig.serviceId, emailjsConfig.templateId, contactForm);
+      const response = await fetch('forms/contact.php', {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.message || 'No se pudo enviar el mensaje.');
+      }
+      sentMessage.textContent = result.message;
       sentMessage.classList.remove('d-none');
       contactForm.reset();
+      if (subjectField && requestedService) {
+        subjectField.value = requestedService.slice(0, 200);
+      }
     } catch (error) {
-      console.error('Error al enviar el formulario de contacto:', error);
-      errorMessage.textContent = 'Error al enviar el mensaje. Inténtalo nuevamente.';
+      errorMessage.textContent = error instanceof Error ? error.message : 'Error al enviar el mensaje. Inténtalo nuevamente.';
       errorMessage.classList.remove('d-none');
     } finally {
+      submitButton.disabled = false;
       loadingMessage.classList.add('d-none');
     }
   });
-
-  if (typeof emailjs !== 'undefined') {
-    emailjs.init({ publicKey: emailjsConfig.publicKey });
-  }
 }

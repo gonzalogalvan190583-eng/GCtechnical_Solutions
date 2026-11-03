@@ -1,31 +1,25 @@
 # Diagramas de GC Technical Solutions
 
-Los siguientes diagramas describen la navegación y las funciones visibles del sitio actual. El diagrama entidad-relación es un **modelo conceptual propuesto**: el proyecto no tiene una base de datos ni persiste clientes o consultas.
+Estos diagramas describen la navegación pública y el panel privado de solicitudes.
 
 ## Diagrama de flujo
 
 ```mermaid
 flowchart TD
-    A([Visitante ingresa al sitio]) --> B[Explora inicio, nosotros, servicios, portafolio, equipo o preguntas frecuentes]
-    B --> C{¿Qué desea hacer?}
-    C -->|Buscar un servicio| D[Escribe en el buscador]
-    D --> E{¿Hay coincidencias?}
-    E -->|Sí| F[Selecciona un resultado]
-    F --> G[Abre la página del servicio]
-    E -->|No| H[Ve que no hay resultados]
-    H --> D
-    C -->|Solicitar información| I[Abre el formulario de contacto]
-    G --> J{¿Desea contactar?}
-    J -->|Sí| I
-    J -->|No| B
-    C -->|Contacto directo| K[Abre WhatsApp o correo]
-    I --> L[Completa nombre, correo, asunto y mensaje]
-    L --> M{¿Campos obligatorios completos?}
-    M -->|No| L
-    M -->|Sí| N[El sitio intenta enviar el formulario mediante EmailJS]
-    N --> O{¿El envío responde correctamente?}
-    O -->|Sí| P[Muestra confirmación y limpia el formulario]
-    O -->|No| Q[Muestra error de envío]
+    A([Visitante ingresa al sitio]) --> B[Explora servicios y contenido]
+    B --> C{¿Desea solicitar información?}
+    C -->|No| B
+    C -->|Sí| D[Abre el formulario de contacto]
+    D --> E[Completa nombre, correo, asunto y mensaje]
+    E --> F{¿Campos válidos?}
+    F -->|No| E
+    F -->|Sí| G[PHP valida y guarda la solicitud en MySQL]
+    G --> H{¿Se guardó correctamente?}
+    H -->|Sí| I[Muestra confirmación]
+    H -->|No| J[Muestra un error de envío]
+    I --> K[El equipo revisa solicitudes en el panel por fecha]
+    K --> L[Abre Outlook para responder al cliente]
+    L --> M[Marca la solicitud como respondida o realizada]
 ```
 
 ## Diagrama de casos de uso
@@ -33,16 +27,23 @@ flowchart TD
 ```mermaid
 flowchart LR
     visitante([Visitante])
-    emailjs([Servicio externo EmailJS])
+    usuario([Usuario autenticado])
 
-    subgraph sitio["GC Technical Solutions"]
+    subgraph sitio["Sitio público"]
         uc1((Explorar contenido))
         uc2((Consultar servicios))
         uc3((Buscar servicios))
         uc4((Ver portafolio y equipo))
         uc5((Solicitar información))
-        uc6((Enviar mensaje de contacto))
+        uc6((Guardar solicitud en MySQL))
         uc7((Contactar por WhatsApp o correo))
+    end
+
+    subgraph gestion["Panel privado"]
+        uc8((Consultar solicitudes por fecha))
+        uc9((Responder en Outlook))
+        uc10((Cambiar estado))
+        uc11((Gestionar usuarios según permisos))
     end
 
     visitante --- uc1
@@ -52,43 +53,49 @@ flowchart LR
     visitante --- uc5
     visitante --- uc7
     uc5 -. incluye .-> uc6
-    uc6 -. intenta enviar mediante .-> emailjs
+    usuario --- uc8
+    usuario --- uc9
+    usuario --- uc10
+    usuario --- uc11
 ```
 
-## Diagrama entidad-relación conceptual
+## Diagrama entidad-relación
 
-Este modelo sirve como base si más adelante se incorpora persistencia. `servicio_id` sería opcional: el formulario actual no registra qué servicio originó la consulta.
+El asunto conserva el servicio seleccionado desde el formulario. Las solicitudes no crean cuentas de cliente.
 
 ```mermaid
 erDiagram
-    CLIENTE ||--o{ CONSULTA : realiza
-    SERVICIO o|--o{ CONSULTA : relacionado_con
+    USERS ||--o{ SERVICE_REQUESTS : responds_to
+    USERS ||--o{ SERVICE_REQUESTS : completes
 
-    CLIENTE {
-        int cliente_id PK
-        string nombre
+    USERS {
+        int id PK
+        string username UK
+        string display_name
+        string password_hash
+        enum role
+        boolean must_change_password
+    }
+
+    SERVICE_REQUESTS {
+        int id PK
+        string name
         string email
-    }
-
-    SERVICIO {
-        int servicio_id PK
-        string nombre
-        string descripcion
-        string url
-    }
-
-    CONSULTA {
-        int consulta_id PK
-        int cliente_id FK
-        int servicio_id FK "opcional"
-        string asunto
-        string mensaje
+        string subject
+        text message
+        enum status
+        datetime created_at
+        datetime responded_at
+        int responded_by FK
+        datetime completed_at
+        int completed_by FK
     }
 ```
 
-### Alcance actual
+## Alcance implementado
 
-- La búsqueda del menú filtra servicios definidos en JavaScript y abre la página seleccionada.
-- El formulario de contacto recoge nombre, correo, asunto y mensaje. Su integración usa identificadores de EmailJS de ejemplo, por lo que requiere configuración para enviar mensajes.
-- No se guardan clientes ni consultas en una base de datos.
+- Los botones de los servicios completan el asunto del formulario.
+- PHP valida y persiste las solicitudes en MySQL.
+- El panel requiere autenticación y permite consultar por fecha, actualizar estados y abrir Outlook para responder.
+- Las cuentas internas se crean desde el panel o mediante el comando inicial de administración.
 - El formulario de suscripción del pie de página está comentado y no forma parte del flujo activo.

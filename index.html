@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Open+Sans:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <link rel="preload" as="image" href="assets/img/Fondo_Pagina/fondo2-optimized.jpg">
@@ -112,7 +112,7 @@
             <li><a href="#contact">Contacto</a></li>
             <li><a href="web-inicial.html">Landing Page Express</a></li>
 
-            <!-- Buscador como li al final -->
+            <!-- Buscador y acceso al panel al final -->
             <li class="nav-item nav-search">
               <button class="nav-search-toggle" type="button" title="Buscar"><i class="bi bi-search"></i></button>
               <div class="nav-search-dropdown">
@@ -674,7 +674,7 @@
               </ul>
               <p><strong>No incluye:</strong> hosting mensual ni dominio. Se cotizan por separado.</p>
               <div class="btn-wrap">
-                <a href="index.html#contact" class="btn-buy">Solicitar</a>
+                <a href="index.html?servicio=Landing%20Page%20Express#contact" class="btn-buy">Solicitar</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -695,7 +695,7 @@
               <p>Tiendas online y desarrollos personalizados se cotizan por separado.</p>
               <p><strong>No incluye:</strong> hosting mensual ni dominio. Se cotizan por separado.</p>
               <div class="btn-wrap">
-                <a href="index.html#contact" class="btn-buy">Solicitar cotización</a>
+                <a href="index.html?servicio=Web%20PyME#contact" class="btn-buy">Solicitar cotización</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -715,7 +715,7 @@
               </ul>
               <p>Hosting mensual y dominio se contratan por separado.</p>
               <div class="btn-wrap">
-                <a href="index.html#contact" class="btn-buy">Contratar pack</a>
+                <a href="index.html?servicio=Pack%20Negocio%20Digital#contact" class="btn-buy">Contratar pack</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -735,7 +735,7 @@
                 <li>Automatizaciones e integraciones según alcance</li>
               </ul>
               <div class="btn-wrap">
-                <a href="index.html#contact" class="btn-buy">Solicitar</a>
+                <a href="index.html?servicio=Gesti%C3%B3n%20PyME#contact" class="btn-buy">Solicitar</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -753,7 +753,7 @@
                 <li>Respuestas rápidas</li>
               </ul>
               <div class="btn-wrap">
-                <a href="index.html#contact" class="btn-buy">Configurar</a>
+                <a href="index.html?servicio=WhatsApp%20Business#contact" class="btn-buy">Configurar</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -772,7 +772,7 @@
               </ul>
               <p>Valor referencial por atención.</p>
               <div class="btn-wrap">
-                <a href="index.html#contact" class="btn-buy">Solicitar ayuda</a>
+                <a href="index.html?servicio=Soporte%20TI%20Remoto#contact" class="btn-buy">Solicitar ayuda</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -793,6 +793,7 @@
               <p>El IVA se confirma antes de contratar, según el alcance.</p>
               <div class="btn-wrap">
                 <a href="asesorías-contable.html" class="btn-buy">Ver servicios</a>
+                <a href="index.html?servicio=Asesor%C3%ADas%20Contables#contact" class="btn-buy">Solicitar asesoría</a>
               </div>
             </div>
           </div><!-- Fin Elemento Precio -->
@@ -932,25 +933,29 @@
           <div class="col-lg-7">
             <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
+                <div class="visually-hidden" aria-hidden="true">
+                  <label for="website-field">Deja este campo vacío</label>
+                  <input type="text" name="website" id="website-field" tabindex="-1" autocomplete="off">
+                </div>
 
                 <div class="col-md-6">
                   <label for="name-field" class="pb-2">Tu nombre</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required>
+                  <input type="text" name="name" id="name-field" class="form-control" maxlength="120" required>
                 </div>
 
                 <div class="col-md-6">
                   <label for="email-field" class="pb-2">Tu correo</label>
-                  <input type="email" name="email" id="email-field" class="form-control" required>
+                  <input type="email" name="email" id="email-field" class="form-control" maxlength="254" required>
                 </div>
 
                 <div class="col-md-12">
                   <label for="subject-field" class="pb-2">Asunto</label>
-                  <input type="text" name="subject" id="subject-field" class="form-control" required>
+                  <input type="text" name="subject" id="subject-field" class="form-control" maxlength="200" required>
                 </div>
 
                 <div class="col-md-12">
                   <label for="message-field" class="pb-2">Mensaje</label>
-                  <textarea name="message" rows="10" id="message-field" class="form-control" required></textarea>
+                  <textarea name="message" rows="10" id="message-field" class="form-control" maxlength="10000" required></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
@@ -1020,10 +1025,11 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Nuestros servicios</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="service-details.html">Diseno web</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="service-details.html">Desarrollo web</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="service-details.html">Gestion de producto</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="service-details.html ">Marketing digital</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="desarrollo-web.html">Diseño y desarrollo web</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="asesorías-contable.html">Asesorías contables</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="web-inicial.html">Landing Page Express</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="configuracion-soporte-tecnico.html">WhatsApp Business</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="configuracion-soporte-tecnico.html">Soporte TI remoto</a></li>
           </ul>
         </div>
 
@@ -1055,12 +1061,8 @@
     <div class="container copyright text-center mt-4">
       <p>&copy; <span>Copyright</span> <strong class="px-1 sitename">GC Technical Solutions</strong> <span>Todos los derechos
           reservados</span></p>
+      <p class="footer-admin-access"><a href="admin/login.php"><i class="bi bi-person-lock" aria-hidden="true"></i> Acceso administrador</a></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-
       </div>
     </div>
 
@@ -1087,8 +1089,6 @@
   <script defer src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script defer src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script defer src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
   <!-- Archivo JS Principal -->
   <script defer src="assets/js/main.js"></script>
 

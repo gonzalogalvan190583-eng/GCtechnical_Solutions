@@ -481,6 +481,20 @@ h6 {
   }
 }
 
+.navmenu a.admin-login-link,
+.navmenu a.admin-login-link:focus {
+  gap: 7px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.navmenu a.admin-login-link:hover {
+  background-color: color-mix(in srgb, var(--accent-color), black 10%);
+  color: var(--contrast-color);
+}
+
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
@@ -691,6 +705,22 @@ h6 {
 
 .footer .copyright p {
   margin-bottom: 0;
+}
+
+.footer .copyright .footer-admin-access {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.footer-admin-access a {
+  color: var(--default-color);
+  text-decoration: none;
+}
+
+.footer-admin-access a:hover,
+.footer-admin-access a:focus-visible {
+  color: var(--accent-color);
+  text-decoration: underline;
 }
 
 .footer .credits {
