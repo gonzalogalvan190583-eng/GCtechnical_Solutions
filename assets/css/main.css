@@ -495,6 +495,38 @@ h6 {
   color: var(--contrast-color);
 }
 
+/* Botón destacado de Landing Page Express */
+.navmenu a.landing-cta,
+.navmenu a.landing-cta:focus {
+  gap: 7px;
+  margin-left: 8px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  font-weight: 700;
+  box-shadow: 0 5px 14px color-mix(in srgb, var(--accent-color), transparent 75%);
+}
+
+.navmenu a.landing-cta:hover {
+  background-color: color-mix(in srgb, var(--accent-color), black 12%);
+  color: var(--contrast-color);
+  transform: translateY(-1px);
+}
+
+.navmenu a.landing-cta i {
+  margin-left: 0;
+}
+
+@media (max-width: 1199px) {
+  .navmenu a.landing-cta,
+  .navmenu a.landing-cta:focus {
+    justify-content: flex-start;
+    margin: 8px 20px;
+    color: var(--contrast-color);
+  }
+}
+
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/

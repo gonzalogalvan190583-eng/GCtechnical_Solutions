@@ -20,6 +20,48 @@ En producción, define estas variables de entorno para el proceso PHP:
 
 El panel necesita un servidor PHP y una base de datos MySQL en ejecución. Abrir `index.html` directamente en el navegador o usar una vista previa de archivos estáticos no ejecuta PHP. El repositorio incluye un inicio local para Windows:
 
+#### Ejecutar desde la terminal con XAMPP
+
+Abre PowerShell en la carpeta del proyecto y agrega temporalmente PHP de XAMPP al `PATH`:
+
+```powershell
+cd C:\gctech_solutions\GCtechnical_Solutions
+$env:Path = "C:\xampp\php;" + $env:Path
+```
+
+Inicia MySQL y después ejecuta el servidor integrado con PHP:
+
+```powershell
+C:\xampp\mysql_start.bat
+php -S 127.0.0.1:8000
+```
+
+Abre `http://127.0.0.1:8000/` en el navegador. Para detener el servidor PHP presiona `Ctrl+C`. Para detener MySQL:
+
+```powershell
+C:\xampp\mysql_stop.bat
+```
+
+#### Ejecutar con el script incluido
+
+Desde la carpeta del proyecto, inicia el servidor y las comprobaciones de configuración:
+
+```powershell
+cd C:\gctech_solutions\GCtechnical_Solutions
+$env:Path = "C:\xampp\php;" + $env:Path
+powershell -NoProfile -ExecutionPolicy Bypass -File .\start-local.ps1
+```
+
+El script inicia PHP de forma independiente y abre el sitio en `http://127.0.0.1:8000/`. Para detenerlo:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\stop-local.ps1
+```
+
+#### Ejecutar desde VS Code
+
+Abre la carpeta del proyecto en VS Code y presiona `F5`. También puedes ejecutar desde la paleta de comandos la tarea **Iniciar servidor local GC**. La configuración abre automáticamente `http://127.0.0.1:8000/` en Microsoft Edge.
+
 1. Instala PHP 8.3 o superior y MySQL 8; PHP debe estar en `PATH` y tener habilitadas `pdo_mysql` y `mbstring`.
 2. Ejecuta `powershell -NoProfile -ExecutionPolicy Bypass -File .\start-local.ps1` desde la carpeta del proyecto. La primera vez se crea `.env` local con una clave privada aleatoria.
 3. Completa en `.env` las credenciales de una base de datos MySQL. Si necesitas crear una base y un usuario local, puedes ejecutar este SQL en MySQL Workbench:
